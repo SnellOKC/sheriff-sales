@@ -111,9 +111,9 @@ export default {
         let d = response.data[i]
 
         // Rough boundary to remove any lat/lngs that Google got way wrong.
-        if (d.latitude < 40 && d.latitude > 30 && d.longitude < -90 && d.longitude > -100) { 
+        if (d.latitude < 40 && d.latitude > 30 && d.longitude < -90 && d.longitude > -100) {
           locations.push({
-            lat: d.latitude, 
+            lat: d.latitude,
             lng: d.longitude,
             popup: '<b>Sale Date: </b>' + d.saledate + '<br/><b>Address:</b> ' + d.address + '<br/><b>Appraisal Value:</b> $' + d.appraisalvalue + ' (Min. Bid: $' + getMinimumAppraisalAmount(d.appraisalvalue) + ')'+ '<br/><b>Case Number: </b>' + d.casenumber + '<br/><a href="' + d.assessedvalue + '" target="_blank">County Assessor</a> / <a href="' + d.taxes + '" target="_blank">Taxes</a> ',
             saledate: d.saledate,
@@ -123,7 +123,7 @@ export default {
           latitudes.push(d.latitude)
           longitudes.push(d.longitude)
         }
-			}
+      }
       this.locations = locations
 
       this.homeBase = getHomeBase(latitudes, longitudes)
@@ -133,7 +133,7 @@ export default {
       if (mymap !== null) {
         mymap.remove();
       }
-      
+
       function updateMap(e) {
         mymap.setView(e.target.getLatLng());
 
@@ -147,7 +147,7 @@ export default {
       var cities = L.layerGroup();
       var cities2 = L.layerGroup();
       var cities3 = L.layerGroup();
-      
+
       for(let i = 0; i < this.locations.length; i++) {
         if (this.price[1] >= this.locations[i].appraisalvalue && this.price[0] <= this.locations[i].appraisalvalue) {
           if (this.locations[i].lat && this.locations[i].saledate == '4/4/2019') {
@@ -221,7 +221,7 @@ export default {
   font-weight: thin;
 }
 
-#mapid { 
+#mapid {
   height: 100vh;
 }
 
@@ -240,8 +240,12 @@ export default {
 }
 
 .slider-align {
-  display: inline-block;
+  display: inline-block !important;
   width: 90px;
+}
+
+.leaflet-control-layers-list {
+  text-align: left;
 }
 </style>
 
