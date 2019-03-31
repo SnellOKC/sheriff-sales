@@ -36,7 +36,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         warnings: false
       },
       sourceMap: true
-    }),
+    }
+    ),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
